@@ -1,19 +1,15 @@
-import { Category } from "@/payload-types";
+import { CustomCategory } from "@/types";
 import Link from "next/link";
 import React from "react";
 
 interface Props {
-  category: Category;
+  category: CustomCategory;
   isOpen: boolean;
   position: { top: number; left: number };
 }
 
 const SubcategoryMenu = ({ category, isOpen, position }: Props) => {
-  if (
-    !isOpen ||
-    !category.subcategories ||
-    !category.subcategories.length === 0
-  )
+  if (!isOpen || !category.subcategories || category.subcategories.length === 0)
     return null;
   const backgroundColor = category.color || "#F5F5F5";
   return (
@@ -28,10 +24,10 @@ const SubcategoryMenu = ({ category, isOpen, position }: Props) => {
         style={{ backgroundColor: backgroundColor }}
       >
         <div>
-          {category.subcategories.map((subcategory: Category) => (
+          {category.subcategories.map((subcategory) => (
             <Link
               key={subcategory.slug}
-              href={`/`}
+              href={`/${category.slug}/${subcategory.slug}`}
               className="w-full text-left p-4 hover:bg-black hover:text-white flex justify-between items-center underline font-medium"
             >
               {subcategory.name}
