@@ -33,7 +33,9 @@ const BreadcrumbNavigation = ({
                 <Link href={`/${activeCategory}`}>{activeCategoryName}</Link>
               </BreadcrumbLink>
             </BreadcrumbItem>
-            <BreadcrumbSeparator className="text-primary font-medium text-xl" />
+            <BreadcrumbSeparator className="text-primary font-medium text-xl">
+              /
+            </BreadcrumbSeparator>
             <BreadcrumbItem>
               <BreadcrumbPage className="text-xl font-medium ">
                 {activeSubcategoryName}
