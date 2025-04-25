@@ -6,12 +6,14 @@ import { cn } from "@/lib/utils";
 import { ListFilter } from "lucide-react";
 import CategoriesSidebar from "./CategoriesSidebar";
 import { CategoriesGetManyOutput } from "@/modules/categories/types";
+import { useParams } from "next/navigation";
 
 interface Props {
   data: CategoriesGetManyOutput;
 }
 
 const Categories = ({ data }: Props) => {
+  const params = useParams();
   const [visibleCount, setVisibleCount] = useState(data.length);
   const [isAnyHovered, setIsAnyHovered] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -19,7 +21,8 @@ const Categories = ({ data }: Props) => {
   const measureRef = useRef<HTMLDivElement>(null);
   const viewAllRef = useRef<HTMLDivElement>(null);
 
-  const activeCategory = "all";
+  const categoryParam = params.category as string | undefined;
+  const activeCategory = categoryParam || "all";
   const activeCategoryIndex = data.findIndex(
     (cat) => cat.slug === activeCategory
   );
@@ -96,6 +99,7 @@ const Categories = ({ data }: Props) => {
                 !isAnyHovered &&
                 "bg-white border-primary"
             )}
+            variant="elevated"
             onClick={() => setIsSidebarOpen(true)}
           >
             View All
