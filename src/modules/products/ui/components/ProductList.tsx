@@ -18,7 +18,7 @@ export const ProductList = ({ category }: Props) => {
   const { data, hasNextPage, isFetchingNextPage, fetchNextPage } =
     useSuspenseInfiniteQuery(
       trpc.products.getMany.infiniteQueryOptions(
-        { category, ...filters, limit: DEFAULT_LIMIT },
+        { ...filters, category, limit: DEFAULT_LIMIT },
         {
           getNextPageParam: (lastPage) => {
             return lastPage.docs.length > 0 ? lastPage.nextPage : undefined;

@@ -142,6 +142,28 @@ const seed = async () => {
     console.log("Starting database seeding...");
     const payload = await getPayload({ config });
 
+    // create admin tenant
+    const adminTenant = await payload.create({
+      collection: "tenants",
+      data: { name: "admin", slug: "admin", stripeAccountId: "admin" },
+    });
+
+    //create admin user
+    await payload.create({
+      collection: "users",
+      data: {
+        email: "harshbajani7@gmail.com",
+        password: "Admin@123",
+        roles: ["super-admin"],
+        username: "admin",
+        tenants: [
+          {
+            tenant: adminTenant.id,
+          },
+        ],
+      },
+    });
+
     // First, let's clear existing categories to avoid conflicts
     console.log("Cleaning up existing categories...");
     try {
@@ -208,7 +230,7 @@ const seed = async () => {
                 data: {
                   name: subcategory.name,
                   slug: subcategory.slug,
-                  parent: parentCategory.id,
+                  parent: parentCategory?.id,
                 },
               });
             } else {

@@ -5,18 +5,14 @@ import React from "react";
 interface Props {
   category: CategoriesGetManyOutput[1];
   isOpen: boolean;
-  position: { top: number; left: number };
 }
 
-const SubcategoryMenu = ({ category, isOpen, position }: Props) => {
+const SubcategoryMenu = ({ category, isOpen }: Props) => {
   if (!isOpen || !category.subcategories || category.subcategories.length === 0)
     return null;
   const backgroundColor = category.color || "#F5F5F5";
   return (
-    <div
-      className="fixed z-50"
-      style={{ top: position.top, left: position.left }}
-    >
+    <div className="absolute z-50" style={{ top: "100%", left: 0 }}>
       {/* invisible bridge */}
       <div className="h-3 w-60" />
       <div
