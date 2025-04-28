@@ -19,7 +19,7 @@ export const formatAsCurrency = (value: string) => {
 
   return new Intl.NumberFormat("en-US", {
     style: "currency",
-    currency: "INR",
+    currency: "USD",
     minimumFractionDigits: 0,
     maximumFractionDigits: 2,
   }).format(numberValue);
