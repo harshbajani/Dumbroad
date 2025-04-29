@@ -28,3 +28,11 @@ export const formatAsCurrency = (value: string) => {
 export function generateTenantURL(tenantSlug: string) {
   return `/tenants/${tenantSlug}`;
 }
+
+export function formatCurrency(value: number | string) {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0,
+  }).format(Number(value));
+}
