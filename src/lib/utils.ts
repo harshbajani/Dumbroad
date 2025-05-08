@@ -27,9 +27,8 @@ export const formatAsCurrency = (value: string) => {
 
 export function generateTenantURL(tenantSlug: string) {
   const isDevelopment = process.env.NODE_ENV === "development";
-  const isSubDomainRoutingEnabled = Boolean(
-    process.env.NEXT_PUBLIC_ENABLE_SUBDOMAIN_ROUTING!
-  );
+  const isSubDomainRoutingEnabled =
+    process.env.NEXT_PUBLIC_ENABLE_SUBDOMAIN_ROUTING === "true";
 
   if (isDevelopment || !isSubDomainRoutingEnabled) {
     return `${process.env.NEXT_PUBLIC_APP_URL}/tenants/${tenantSlug}`;
