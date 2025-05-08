@@ -5,6 +5,8 @@ import { loadProductFilters } from "@/modules/products/searchParams";
 import { DEFAULT_LIMIT } from "@/constants";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 
+export const dynamic = "force-dynamic";
+
 interface Props {
   params: Promise<{ slug: string }>;
   searchParams: Promise<SearchParams>;

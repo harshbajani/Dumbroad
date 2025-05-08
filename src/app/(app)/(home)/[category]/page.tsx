@@ -5,6 +5,8 @@ import { loadProductFilters } from "@/modules/products/searchParams";
 import ProductListView from "@/modules/products/ui/views/ProductListView";
 import { DEFAULT_LIMIT } from "@/constants";
 
+export const dynamic = "force-dynamic";
+
 interface Props {
   params: Promise<{
     category: string;
